@@ -1,0 +1,299 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition AAAAAA
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/creatures/add-abilities:
+    post:
+      tags:
+      - creatures-controller
+      operationId: updateAbilities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAbilitiesDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CreatureDTO'
+  /api/creatures:
+    get:
+      tags:
+      - creatures-controller
+      operationId: getAllCreatures_1_1
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: ability
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreatureDTO_CreatureWithCastle'
+  /api/creatures/{id}:
+    get:
+      tags:
+      - creatures-controller
+      operationId: getCreatureById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CreatureDTO_CreatureWithCastle'
+  /api/castles:
+    get:
+      tags:
+      - castles-controller
+      operationId: getCastlesByName
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CastleDTO'
+  /api/castles/{id}:
+    get:
+      tags:
+      - castles-controller
+      operationId: getCastle
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CastleDTO'
+  /api/castles/{id}/creatures:
+    get:
+      tags:
+      - castles-controller
+      operationId: getAllCreaturesByCastle
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreatureDTO_Creature'
+components:
+  schemas:
+    UpdateAbilitiesDTO:
+      type: object
+      properties:
+        creatureId:
+          type: integer
+          format: int32
+        creatureName:
+          type: string
+        abilities:
+          type: array
+          items:
+            type: string
+    CreatureDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        level:
+          type: integer
+          format: int32
+        castle:
+          type: string
+        damageMin:
+          type: integer
+          format: int32
+        damageMax:
+          type: integer
+          format: int32
+        attack:
+          type: integer
+          format: int32
+        defense:
+          type: integer
+          format: int32
+        health:
+          type: integer
+          format: int32
+        speed:
+          type: integer
+          format: int32
+        growth:
+          type: integer
+          format: int32
+        gold:
+          type: integer
+          format: int32
+        resource:
+          type: string
+        resourceAmount:
+          type: integer
+          format: int32
+        abilities:
+          type: array
+          items:
+            type: string
+        aiValue:
+          type: integer
+          format: int32
+    CreatureDTO_CreatureWithCastle:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        level:
+          type: integer
+          format: int32
+        castle:
+          type: string
+        damageMin:
+          type: integer
+          format: int32
+        damageMax:
+          type: integer
+          format: int32
+        attack:
+          type: integer
+          format: int32
+        defense:
+          type: integer
+          format: int32
+        health:
+          type: integer
+          format: int32
+        speed:
+          type: integer
+          format: int32
+        growth:
+          type: integer
+          format: int32
+        gold:
+          type: integer
+          format: int32
+        resource:
+          type: string
+        resourceAmount:
+          type: integer
+          format: int32
+        abilities:
+          type: array
+          items:
+            type: string
+        aiValue:
+          type: integer
+          format: int32
+    CastleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        side:
+          type: string
+    CreatureDTO_Creature:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        level:
+          type: integer
+          format: int32
+        damageMin:
+          type: integer
+          format: int32
+        damageMax:
+          type: integer
+          format: int32
+        attack:
+          type: integer
+          format: int32
+        defense:
+          type: integer
+          format: int32
+        health:
+          type: integer
+          format: int32
+        speed:
+          type: integer
+          format: int32
+        growth:
+          type: integer
+          format: int32
+        gold:
+          type: integer
+          format: int32
+        resource:
+          type: string
+        resourceAmount:
+          type: integer
+          format: int32
+        abilities:
+          type: array
+          items:
+            type: string
+        aiValue:
+          type: integer
+          format: int32
