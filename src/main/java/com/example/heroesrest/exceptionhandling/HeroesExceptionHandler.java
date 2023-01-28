@@ -21,8 +21,8 @@ public class HeroesExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ NoIdOrNameProvidedException.class, EmptySearchCriteriaException.class })
     public ResponseEntity<ApiError> handleNoIdOrNameProvidedForAbilities(RuntimeException e) {
 
-        ApiError ApiError = new ApiError(HttpStatus.NOT_FOUND.value(), e.getMessage());
-        return new ResponseEntity<>(ApiError, HttpStatus.NOT_FOUND);
+        ApiError ApiError = new ApiError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+        return new ResponseEntity<>(ApiError, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler

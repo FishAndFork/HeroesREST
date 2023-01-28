@@ -52,7 +52,7 @@ public class Creature {
     @Column(name="gold")
     private Integer gold;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="resource_id")
     private Resource resource;
 

@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/creatures")
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class CreaturesController {
 
     private final HeroesService heroesService;
@@ -35,6 +34,11 @@ public class CreaturesController {
                                         @RequestParam(required = false) String castle,
                                         @RequestParam(required = false) String ability) {
         return this.heroesService.findCreatures(name, castle, ability);
+    }
+
+    @GetMapping(value = "names")
+    public List<String> findCreatureNames() {
+        return this.heroesService.findAllNames();
     }
 
     @PostMapping(value="add-abilities")

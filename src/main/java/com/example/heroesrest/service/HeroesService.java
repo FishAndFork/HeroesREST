@@ -57,7 +57,7 @@ public class HeroesService {
     }
 
     private List<CreatureDTO> findAllCreatures() {
-        return creatureRepository.findAll()
+        return creatureRepository.findAllOrderById()
                 .stream().map(this::convertToCreatureDTO)
                 .collect(Collectors.toList());
     }
@@ -97,9 +97,13 @@ public class HeroesService {
     }
 
     public List<CreatureDTO> findAllCreaturesByCastleId(int id) {
-        return creatureRepository.findByCastleId(id)
+        return creatureRepository.findByCastleIdOrderById(id)
                 .stream().map(this::convertToCreatureDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> findAllNames() {
+        return creatureRepository.findAllNames();
     }
 
     public CreatureDTO updateAbilities(UpdateAbilitiesDTO dto, BindingResult bindingResult) {
