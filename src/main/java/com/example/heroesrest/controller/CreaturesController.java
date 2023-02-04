@@ -5,14 +5,17 @@ import com.example.heroesrest.dto.UpdateAbilitiesDTO;
 import com.example.heroesrest.service.HeroesService;
 import com.example.heroesrest.util.View;
 import com.fasterxml.jackson.annotation.JsonView;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/creatures")
+@Validated
 public class CreaturesController {
 
     private final HeroesService heroesService;
@@ -30,9 +33,9 @@ public class CreaturesController {
     }
 
     @GetMapping(value = "")
-    public List<CreatureDTO> findCreatures(@RequestParam(required = false) String name,
-                                        @RequestParam(required = false) String castle,
-                                        @RequestParam(required = false) String ability) {
+    public List<CreatureDTO> findCreatures(@RequestParam(required = false) @Size(min = 3) String name,
+                                        @RequestParam(required = false) @Size(min = 3) String castle,
+                                        @RequestParam(required = false) @Size(min = 3) String ability) {
         return this.heroesService.findCreatures(name, castle, ability);
     }
 
